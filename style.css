@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0f172a; /* Fondo oscuro moderno */
+    color: #f8fafc;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header, footer {
+    text-align: center;
+    padding: 2rem;
+    background-color: #1e293b;
+}
+
+footer {
+    margin-top: auto; /* Empuja el footer al fondo */
+}
+
+/* --- CONTENEDOR FLEXBOX PRINCIPAL --- */
+.gallery-container {
+    display: flex;
+    flex-wrap: wrap;       /* Permite que los elementos bajen de línea */
+    gap: 20px;            /* Espacio entre tarjetas */
+    padding: 20px;
+    justify-content: center;
+}
+
+/* --- TARJETAS (Mobile First: 1 columna por defecto) --- */
+.gallery-item {
+    background-color: #1e293b;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    /* En móviles ocupa el 100% del ancho disponible (restando el gap) */
+    flex: 1 1 calc(100% - 20px); 
+    max-width: 400px; /* Para que no se vea gigante en pantallas verticales */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover; /* Evita que la imagen se deforme */
+}
+
+.item-info {
+    padding: 15px;
+}
+
+.item-info h3 {
+    margin-bottom: 5px;
+    color: #38bdf8; /* Azul tecnológico */
+}
+
+/* --- MEDIA QUERIES (Responsividad) --- */
+
+/* TABLET: 2 Columnas */
+@media (min-width: 600px) {
+    .gallery-item {
+        /* (100% / 2) - espacio del gap proporcional */
+        flex: 1 1 calc(50% - 20px);
+        max-width: none;
+    }
+}
+
+/* DESKTOP: 4 Columnas */
+@media (min-width: 1024px) {
+    .gallery-item {
+        /* (100% / 4) - espacio del gap proporcional */
+        flex: 1 1 calc(25% - 20px);
+    }
+    .gallery-container {
+        max-width: 1200px;
+        margin: 0 auto; /* Centra la galería en pantallas enormes */
+    }
+}
